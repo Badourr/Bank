@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Financial Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Financial Dashboard</h1>
+    <button id="toggleMode">Toggle Light/Dark Mode</button>
+  </header>
+
+  <main class="dashboard">
+    <!-- Financial Goal Tracker -->
+    <section id="overview" class="dashboard-section">
+      <h2>Financial Goal Tracker</h2>
+      <canvas id="goalGraph"></canvas>
+    </section>
+
+    <!-- Compound Growth Forecast -->
+    <section id="growth" class="dashboard-section">
+      <h2>Compound Growth Forecast</h2>
+      <canvas id="growthGraph"></canvas>
+    </section>
+
+    <!-- Debt Tracker -->
+    <section id="debt" class="dashboard-section">
+      <h2>Debt Tracker</h2>
+      <canvas id="debtGraph"></canvas>
+    </section>
+
+    <!-- Income Tracker -->
+    <section id="income" class="dashboard-section">
+      <h2>Income Tracker</h2>
+      <canvas id="incomeGraph"></canvas>
+    </section>
+
+    <!-- Real Estate Performance -->
+    <section id="real-estate" class="dashboard-section">
+      <h2>Real Estate Performance</h2>
+      <canvas id="realEstateGraph"></canvas>
+    </section>
+
+    <!-- Asset Allocation -->
+    <section id="asset-allocation" class="dashboard-section">
+      <h2>Asset Allocation</h2>
+      <canvas id="assetGraph"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <p>Financial Dashboard © 2024</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
