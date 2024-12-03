@@ -1,17 +1,20 @@
-// Wait for DOM to fully load
+// Wait until DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   // Toggle Light/Dark Mode
   const toggleBtn = document.getElementById('toggleMode');
   let isDarkMode = true;
 
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode', !isDarkMode);
-    isDarkMode = !isDarkMode;
-  });
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode', !isDarkMode);
+      isDarkMode = !isDarkMode;
+    });
+  }
 
-  // Chart Configurations
-  const chartConfigs = {
-    goalGraph: {
+  // Chart configurations
+  const chartConfigs = [
+    {
+      id: 'goalGraph',
       type: 'bar',
       data: {
         labels: ['Goal', 'Current Balance'],
@@ -22,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }]
       }
     },
-    growthGraph: {
+    {
+      id: 'growthGraph',
       type: 'line',
       data: {
         labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
@@ -34,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }]
       }
     },
-    debtGraph: {
+    {
+      id: 'debtGraph',
       type: 'bar',
       data: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
@@ -46,7 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }]
       }
     },
-    incomeGraph: {
+    {
+      id: 'incomeGraph',
       type: 'line',
       data: {
         labels: ['Q1', 'Q2', 'Q3', 'Q4'],
@@ -58,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }]
       }
     },
-    realEstateGraph: {
+    {
+      id: 'realEstateGraph',
       type: 'pie',
       data: {
         labels: ['Rental', 'Flipping', 'Commercial'],
@@ -69,7 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }]
       }
     },
-    assetGraph: {
+    {
+      id: 'assetGraph',
       type: 'doughnut',
       data: {
         labels: ['Stocks', 'Bonds', 'Real Estate', 'Cash'],
@@ -80,21 +88,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }]
       }
     }
-  };
+  ];
 
-  // Function to initialize charts
-  const initializeChart = (canvasId, config) => {
-    const canvasElement = document.getElementById(canvasId);
-    if (!canvasElement) {
-      console.warn(`Canvas with ID '${canvasId}' not found.`);
-      return;
+  // Initialize all charts
+  chartConfigs.forEach(config => {
+    const ctx = document.getElementById(config.id)?.getContext('2d');
+    if (ctx) {
+      new Chart(ctx, {
+        type: config.type,
+        data: config.data,
+      });
+    } else {
+      console.warn(`Canvas with id "${config.id}" not found.`);
     }
-    const ctx = canvasElement.getContext('2d');
-    new Chart(ctx, config);
-  };
-
-  // Loop through configurations and initialize charts
-  Object.entries(chartConfigs).forEach(([canvasId, config]) => {
-    initializeChart(canvasId, config);
   });
 });
